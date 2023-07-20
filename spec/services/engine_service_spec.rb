@@ -47,13 +47,12 @@ RSpec.describe EngineService do
 
   describe "#items_by_merchant(id)" do
     it "establishes a connection to fetch a merchants items" do
-      merchant = EngineService.new.items_by_merchant(3)
-      
-      expect(merchant).to have_key(:data)
-      items = merchant[:data]
-      expect(items.count).to eq(25)
+      items = EngineService.new.items_by_merchant(3)
 
-      item = merchant[:data].first
+      expect(items).to have_key(:data)
+      expect(items[:data].count).to eq(25)
+
+      item = items[:data].first
       expect(item).to have_key(:id)
       expect(item[:id]).to be_a(String)
 
